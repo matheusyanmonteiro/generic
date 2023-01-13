@@ -2,9 +2,46 @@ import { useState } from 'react';
 import { Post } from './components/Post';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar'
+import styles from './App.module.css';
 
 import './global.css';
-import styles from './App.module.css';
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://avatars.githubusercontent.com/u/49919267?v=4',
+      name: 'Vicent Winstom Orwell',
+      role: 'CTO @ Generic',
+    },
+    content: [
+      {type: 'paragraph', content: 'Fala galeraa 👋'},
+      {
+        type: 'paragraph', 
+        content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'
+      },
+      {type: 'link', content: 'jane.desing/doctorcare'}
+    ],
+    publishedAt: new Date('2022-05-03 21:00:11')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://avatars.githubusercontent.com/u/62117139?v=4',
+      name: 'Gordon Charles Simons',
+      role: 'TCO @ Generic',
+    },
+    content: [
+      {type: 'paragraph', content: 'Fala galeraa 👋'},
+      {
+        type: 'paragraph', 
+        content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'
+      },
+      {type: 'link', content: 'jane.desing/doctorcare'}
+    ],
+    publishedAt: new Date('2022-05-04 22:00:11')
+  }
+];
 
 export function App() {
   const [count, setCount] = useState(0)
@@ -16,15 +53,17 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar/>
         <main>
-          <Post
-            author="v 76 ae trueno"
-            content="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo deleniti magni recusandae, veniam autem alias nesciunt inventore aspernatur ipsa, possimus, libero mollitia maiores doloremque ullam cumque beatae iste quibusdam adipisci?"
-          />
-
-          <Post
-            author="ae ! trueno"
-            content="Lorem ipsum dolusandae, veniam autem  nesciunt inventore aspernatur ipsa, possimus, libero mollitia maiores doloremque ullam cumque beatae iste quibusdam adipisci?"
-          />  
+          {
+            posts.map(post => {
+              return (
+                <Post
+                  author={post.author}
+                  content={post.content}
+                  publishedAt={post.publishedAt}
+                />
+              )
+            })
+          }
         </main>
       </div>
     </div>
